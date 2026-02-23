@@ -9,9 +9,9 @@ namespace Assets.Scripts
     [System.Serializable]
     public class DallLeaderbord
 	{
-		public List<Score> Scores = new();
+		private List<Score> Scores = new();
         private int maxEntries = 10;
-        public bool MinimalScore(int point)
+        private bool MinimalScore(int point)
 		{
 			foreach (Score score in Scores)
 			{
@@ -32,22 +32,24 @@ namespace Assets.Scripts
 			return true;
 		}
 
-        public void AddAndSortScore(Score playerscore)
+        public bool AddAndSortScore(Score playerscore)
         {
-            PlayerScore newEntry = new PlayerScore(name, score);
-            Scores.Add(newEntry);
+			if (MinimalScore(playerscore.Points))
+			{
+                Scores.Add(playerscore);
 
-            // 2. Sort the list (Highest score at index 0)
-            // This uses a "Lambda" expression: it compares score B to score A
-            highScores.Sort((a, b) => b.Score.CompareTo(a.Score));
+                Scores.Sort((a, b) => b.Points.CompareTo(a.Points));
 
-            // 3. Optional: Trim the list so it only keeps the top X scores
-            if (highScores.Count > maxEntries)
-            {
-                highScores.RemoveRange(maxEntries, highScores.Count - maxEntries);
+                if (Scores.Count > maxEntries)
+                {
+                    Scores.RemoveRange(maxEntries, Scores.Count - maxEntries);
+                }
+
+                Debug.Log($"Added {playerscore.Name}'s score of {playerscore.Points}. Current leader: {Scores[0].Name}");
+				return true;
             }
+			return false;
 
-            Debug.Log($"Added {name}'s score of {score}. Current leader: {highScores[0].Name}");
         }
 
     }
