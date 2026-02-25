@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 615456045506010289}
   - component: {fileID: 2647163149017999651}
   - component: {fileID: 846319685961517975}
+  - component: {fileID: -208378365302904058}
   m_Layer: 0
-  m_Name: Point
-  m_TagString: Untagged
+  m_Name: SlashPoint
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 89209286bf7e4744cb3c4065001c8cc8, type: 2}
+  - {fileID: 2100000, guid: cc45b681b98bed7468afa0752e76239d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,5 +126,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b01d0b24bd23a64890691da1773864f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePoint
-  endPoint: {fileID: 0}
-  smooth: 5
+  startPosition: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  distanceToEnd: 20
+  timeToReachTarget: 5
+  hitWindow: 0.155
+  t: 0
+  timeToPlayer: 0
+--- !u!114 &-208378365302904058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901259259678547472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f8c2cc7e7e5cc44a0c574e5424dbbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HitPoint
+  hitWindow: 0.15
+  laneNr: 0
+  pointMover: {fileID: 846319685961517975}
+  pointNr: 0
+  pointType: 1

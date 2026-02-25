@@ -4,28 +4,48 @@ using UnityEngine;
 
 public class MovePoint : MonoBehaviour
 {
-    public Transform endPoint;
-    public float smooth = 1f;
-    Vector3 currentVelocity;
+    public Vector3 startPosition;
+    public Vector3 endPoint;
+    public float distanceToEnd = 20f;
+    public float timeToReachTarget = 7f;
+    public float hitWindow = 0.150f;
+    public float t;
+    public float timeToPlayer;
 
-    void Start()
+    private bool ready = false;
+    public void SetupPoint(float timeToTarget)
     {
-        
-    }
+        t = 0;
+        startPosition = transform.position;
+        startPosition.x = -10;
 
+        endPoint = transform.position;
+        endPoint.x = distanceToEnd;
+
+        timeToReachTarget = timeToTarget;
+        timeToPlayer = timeToReachTarget / 2;
+
+        ready = true;
+    }
 
     void Update()
     {
-        Vector3 dist = endPoint.position - transform.position;
-
-        if (dist.x > 5f)
+        if (ready)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, endPoint.position, ref currentVelocity, smooth);
-        }
-
-        float distance = Vector3.Distance(endPoint.position, transform.position);
-        if (distance < 0.5f){
-            Destroy(gameObject);
-        }
+            timeToPlayer -= Time.deltaTime;
+            t += Time.deltaTime / timeToReachTarget;
+            transform.position = Vector3.Lerp(startPosition, endPoint, t);
+        }  
     }
+
+    public void SetDestination(Vector3 destination, float time)
+    {
+        t = 0;
+        startPosition = transform.position;
+        timeToReachTarget = time;
+        endPoint = destination;
+    }
+
+
+
 }

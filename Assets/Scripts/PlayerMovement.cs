@@ -11,33 +11,61 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode moveRight;
     public KeyCode moveLeft;
     public KeyCode slash;
-    public int currentLaneNr = 0;
-    private int lastLaneNr = 0;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int currentLaneNr = 1;
+    private int lastLaneNr = 1;
+
+    public int currentPointNr = 0;
+
+    public bool snapBack = false;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         lastLaneNr = currentLaneNr;
-        if (Input.GetKeyDown(moveRight))
+
+
+        if (!snapBack)
         {
-            currentLaneNr++;
-            if (currentLaneNr >= 1)
+            if (Input.GetKeyDown(moveRight))
             {
-                currentLaneNr = 1;
+                changeLaneNr(true);
+            }
+
+            if (Input.GetKeyDown(moveLeft))
+            {
+                changeLaneNr(false);
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(moveRight))
+            {
+                changeLaneNr(true);
+            }
+            else if(Input.GetKeyUp(moveRight))
+            {
+                changeLaneNr(false);
+            }
+
+            if (Input.GetKeyDown(moveLeft))
+            {
+                changeLaneNr(false);
+            }
+            else if (Input.GetKeyUp(moveLeft))
+            {
+                changeLaneNr(true);
             }
         }
 
-        if (Input.GetKeyDown(moveLeft))
+        if (Input.GetKeyDown(slash))
         {
-            currentLaneNr--;
-            if (currentLaneNr <= -1)
+            if (FindPoint() != null)
             {
-                currentLaneNr = -1;
+                FindPoint().TryToHitPoint(currentLaneNr, 1);
             }
         }
 
@@ -47,10 +75,57 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void changeLaneNr(bool right)
+    {
+        if(right)
+        {
+            currentLaneNr++;
+            if (currentLaneNr > 2)
+            {
+                currentLaneNr = 2;
+            }
+            else
+            {
+                if(FindPoint() != null)
+                {
+                    FindPoint().TryToHitPoint(currentLaneNr, 0);
+                }
+            }
+        }
+        else
+        {
+            currentLaneNr--;
+            if (currentLaneNr < 0)
+            {
+                currentLaneNr = 0;
+            }
+            else
+            {
+                if (FindPoint() != null)
+                {
+                    FindPoint().TryToHitPoint(currentLaneNr, 0);
+                }
+            }
+        }
+    }
+
+    public HitPoint FindPoint()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Point");
+        foreach (GameObject obj in objects)
+        {
+            HitPoint point = obj.GetComponent<HitPoint>();
+            if (point.pointNr == currentPointNr)
+            {
+                return point;
+            }
+        }
+        return null;
+    }
     public void MovePlayer(int laneNr)
     {
-        if (laneNr == -1) { transform.position = leftPos.position; }
-        if (laneNr == 0) { transform.position = midPos.position; }
-        if (laneNr == 1) { transform.position = rightPos.position; }
+        if (laneNr == 0) { transform.position = leftPos.position; }
+        if (laneNr == 1) { transform.position = midPos.position; }
+        if (laneNr == 2) { transform.position = rightPos.position; }
     }
 }
