@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 65d71541c3424ed4e930261f49bdadd4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - songDatabase: {fileID: 11400000, guid: 3411af1ac561f0a46819781739d21885, type: 2}
+  - buttonPrefab: {fileID: 8145326177118801001, guid: 6be43c872632d7a4aac598a88e8badd2, type: 3}
+  - contentParent: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
