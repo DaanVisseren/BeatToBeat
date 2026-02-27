@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - SongContent
+  - Point
+  - PointSystem
   layers:
   - Default
   - TransparentFX

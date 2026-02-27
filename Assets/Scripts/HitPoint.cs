@@ -10,10 +10,15 @@ public class HitPoint : MonoBehaviour
     public int pointNr;
     private PlayerMovement player;
     public int pointType;
+    public float blankHitWindow;
+    public PointSystem pointSystem;
+    private float maxDistanceFromPlayerToScore = 6.14f;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        pointSystem = GameObject.FindWithTag("PointSystem").GetComponent<PointSystem>();
+        hitWindow = pointSystem.maxTimeOff;
     }
 
     void Update()
@@ -22,7 +27,10 @@ public class HitPoint : MonoBehaviour
 
         if(pointType == 2)
         {
-            TryToHitPoint(player.currentLaneNr, pointType);
+            if (pointMover.timeToPlayer <= blankHitWindow)
+            {
+                TryToHitPoint(player.currentLaneNr, pointType);
+            }
         }
     }
 
@@ -36,20 +44,26 @@ public class HitPoint : MonoBehaviour
                 {
                     Debug.Log(pointMover.timeToPlayer);
                     player.currentPointNr++;
+                    pointSystem.GainPoints(CalculateTimeOff(pointMover.timeToPlayer));
                     Destroy(gameObject);
                 }
             }
         }
     }
 
-
     public void MissPoint()
     {
-        if (pointMover.timeToPlayer < hitWindow - ((hitWindow*2)-0.002f))
+        if (pointMover.timeToPlayer < hitWindow - ((hitWindow*2)-0.002f) || transform.position.x > maxDistanceFromPlayerToScore)
         {
             player.currentPointNr++;
             Debug.Log("Missed!");
+            pointSystem.BreakStreak();
             Destroy(gameObject);
         }
+    }
+
+    public float CalculateTimeOff(float timeToPlayer)
+    {
+        return Mathf.Abs(timeToPlayer);
     }
 }

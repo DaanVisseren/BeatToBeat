@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (FindPoint() != null)
                 {
+                    Debug.Log("Found one");
                     FindPoint().TryToHitPoint(currentLaneNr, 0);
                 }
             }

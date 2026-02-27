@@ -15,6 +15,8 @@ public class SpawnPoints : MonoBehaviour
 
     public int pointsSpawned = 0;
 
+    private int lastLanePlaced = 10;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,11 +41,30 @@ public class SpawnPoints : MonoBehaviour
 
     private void CreatePoint(int i, GameObject prefab)
     {
-       GameObject obj = Instantiate(prefab, spawnPoints[i].position, Quaternion.identity);
-       HitPoint point = obj.GetComponent<HitPoint>();
-       point.laneNr = i;
-       point.pointNr = pointsSpawned;
+        GameObject obj = Instantiate(prefab, spawnPoints[i].position, Quaternion.identity);
+        HitPoint point = obj.GetComponent<HitPoint>();
+
+        point.laneNr = i;
+        if (point.pointType == 0) {RotateObject(obj, point); }//TEMP 
+
+        point.pointNr = pointsSpawned;
        obj.GetComponent<MovePoint>().SetupPoint(timeToReachEnd);
        pointsSpawned++;
+       lastLanePlaced = i;
+    }
+
+    //TEMP
+    public void RotateObject(GameObject obj, HitPoint point)
+    {
+        if(pointsSpawned == 1 && point.laneNr == 2)
+        {
+            obj.transform.localRotation *= Quaternion.Euler(0, 180, -23);
+            return;
+        }
+
+        if(point.laneNr > lastLanePlaced || point.laneNr == 2)
+        {
+            obj.transform.localRotation *= Quaternion.Euler(0, 180, -23);
+        }
     }
 }
