@@ -16,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
 
     public int currentPointNr = 0;
 
+    public float moveSpeed;
     public bool snapBack = false;
 
-    void Start()
-    {
-        
-    }
+    private float t = 0;
+    public bool isMoving = false;
+    private Vector3 endPoint;
+    private Vector3 startPoint;
+
 
     void Update()
     {
@@ -71,8 +73,14 @@ public class PlayerMovement : MonoBehaviour
 
         if(currentLaneNr != lastLaneNr)
         {
-            MovePlayer(currentLaneNr);
+            SetMovement(currentLaneNr);
         }
+
+        if (isMoving)
+        {
+            MovePlayer();
+        }
+
     }
 
     public void changeLaneNr(bool right)
@@ -123,10 +131,30 @@ public class PlayerMovement : MonoBehaviour
         }
         return null;
     }
-    public void MovePlayer(int laneNr)
+    public void MovePlayer()
     {
-        if (laneNr == 0) { transform.position = leftPos.position; }
-        if (laneNr == 1) { transform.position = midPos.position; }
-        if (laneNr == 2) { transform.position = rightPos.position; }
+        if(transform.position == endPoint)
+        {
+            isMoving = false;
+            return;
+        }
+        t += Time.deltaTime / moveSpeed;
+        transform.position = Vector3.Lerp(startPoint, endPoint, t);
+    }
+
+    public void SetMovement(int laneNr)
+    {
+        if (!isMoving)
+        {
+            t = 0;
+        }
+
+        startPoint = transform.position;
+
+        if (laneNr == 0) { /*transform.position = leftPos.position; */ endPoint = leftPos.position; }
+        if (laneNr == 1) { /*transform.position = midPos.position; */ endPoint = midPos.position;  }
+        if (laneNr == 2) { /*transform.position = rightPos.position; */ endPoint = rightPos.position;  }
+
+        isMoving = true;
     }
 }

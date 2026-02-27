@@ -147,9 +147,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPoint
   hitWindow: 0.2
+  negativeHitWindow: 0
   laneNr: 0
   pointMover: {fileID: 846319685961517975}
   pointNr: 0
   pointType: 2
-  blankHitWindow: 0.08
+  blankHitWindow: 0.03
+  negativeBlankHitWindow: -0.05
   pointSystem: {fileID: 0}
