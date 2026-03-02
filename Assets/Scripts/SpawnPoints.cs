@@ -47,7 +47,7 @@ public class SpawnPoints : MonoBehaviour
         point.laneNr = i;
         if (point.pointType == 0) {RotateObject(obj, point); }//TEMP 
 
-        point.pointNr = pointsSpawned;
+       point.pointNr = pointsSpawned;
        obj.GetComponent<MovePoint>().SetupPoint(timeToReachEnd);
        pointsSpawned++;
        lastLanePlaced = i;
@@ -62,7 +62,7 @@ public class SpawnPoints : MonoBehaviour
             return;
         }
 
-        if(point.laneNr > lastLanePlaced || point.laneNr == 2)
+        if((point.laneNr == 1 && lastLanePlaced == 0) || point.laneNr == 2)
         {
             obj.transform.localRotation *= Quaternion.Euler(0, 180, -23);
         }
