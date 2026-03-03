@@ -7,6 +7,8 @@ namespace Assets.Scripts.Objects
     public class NewMonoBehaviour : MonoBehaviour
     {
         public SongDatabase song;
+
+
         // Use this for initialization
         void Start()
         {
