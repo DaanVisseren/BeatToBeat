@@ -12,10 +12,6 @@ namespace Assets.Scripts.Objects
         {
                 SongData songToPlay = song.allSongs[0];
                 RhythmAudioManager.Instance.LoadSong(songToPlay);
-                RhythmAudioManager.Instance.AutoGenerateBeatmap();
-                Debug.Log("Lane1 beats: " + RhythmAudioManager.Instance.currentSong.lane1Beats.Count);
-                Debug.Log("Lane2 beats: " + RhythmAudioManager.Instance.currentSong.lane2Beats.Count);
-                Debug.Log("Lane3 beats: " + RhythmAudioManager.Instance.currentSong.lane3Beats.Count);
                 RhythmAudioManager.Instance.StartSong();         
         }
         // Update is called once per frame
