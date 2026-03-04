@@ -1,3 +1,4 @@
+using Assets.Scripts.Objects;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,8 @@ public class HitPoint : MonoBehaviour
     public MovePoint pointMover;
     public int pointNr;
     private PlayerMovement player;
-    public int pointType;
+    //public int pointType;
+    public BeatTypes beatType;
     public float blankHitWindow;
     public float negativeBlankHitWindow;
     public PointSystem pointSystem;
@@ -29,28 +31,34 @@ public class HitPoint : MonoBehaviour
     {
         MissPoint();
 
-        if(pointType == 2)
+        if(beatType == BeatTypes.Touch || beatType == BeatTypes.Crash)
         {
             if (pointMover.timeToPlayer <= blankHitWindow && pointMover.timeToPlayer >= negativeBlankHitWindow)
             {
-                TryToHitPoint(player.currentLaneNr, pointType);
+                TryToHitPoint(player.currentLaneNr, beatType);
             }
         }
     }
 
-    public void TryToHitPoint(int lane, int typeTryingToHit)
+    public void TryToHitPoint(int lane, BeatTypes typeTryingToHit)
     {
         if (player.notDisable())
         {
-            if ((pointMover.timeToPlayer >= negativeHitWindow && pointMover.timeToPlayer <= hitWindow) || pointType == 2)
+            if ((pointMover.timeToPlayer >= negativeHitWindow && pointMover.timeToPlayer <= hitWindow) || (beatType == BeatTypes.Touch || beatType == BeatTypes.Crash))
             {
                 if (lane == laneNr)
                 {
-                    if (pointType == typeTryingToHit)
+                    if (beatType == typeTryingToHit)
                     {
                         Debug.Log(pointMover.timeToPlayer);
                         player.currentPointNr++;
-                        if (pointType == 2) { pointSystem.GainPoints(); }
+                        if (beatType == BeatTypes.Touch) { pointSystem.GainPoints(); }
+                        else if(beatType == BeatTypes.Crash) {
+                            pointSystem.BreakStreak();
+                            MissPoint();
+                            player.HitObstical();
+                            Destroy(gameObject);
+                        }
                         else { pointSystem.GainPoints(pointMover.timeToPlayer); }
                         Destroy(gameObject);
                     }
@@ -65,7 +73,7 @@ public class HitPoint : MonoBehaviour
         if (pointMover.timeToPlayer < (negativeHitWindow -0.002f) && !missed)
         {
             player.currentPointNr++;
-            pointSystem.BreakStreak();
+            if(beatType != BeatTypes.Crash) { pointSystem.BreakStreak(); }
             missed = true;
         }
 

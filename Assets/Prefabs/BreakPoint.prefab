@@ -151,7 +151,7 @@ MonoBehaviour:
   laneNr: 0
   pointMover: {fileID: 846319685961517975}
   pointNr: 0
-  pointType: 2
+  beatType: 3
   blankHitWindow: 0.03
   negativeBlankHitWindow: -0.05
   pointSystem: {fileID: 0}

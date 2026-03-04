@@ -1,3 +1,4 @@
+using Assets.Scripts.Objects;
 using System.Collections;
 using UnityEngine;
 
@@ -77,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (FindPoint() != null)
                 {
-                    FindPoint().TryToHitPoint(currentLaneNr, 1);
+                    FindPoint().TryToHitPoint(currentLaneNr, BeatTypes.Standard);
                 }
             }
 
@@ -108,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(FindPoint() != null)
                 {
-                    FindPoint().TryToHitPoint(currentLaneNr, 0);
+                    FindPoint().TryToHitPoint(currentLaneNr, BeatTypes.Side);
                 }
             }
         }
@@ -123,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (FindPoint() != null)
                 {
-                    FindPoint().TryToHitPoint(currentLaneNr, 0);
+                    FindPoint().TryToHitPoint(currentLaneNr, BeatTypes.Side);
                 }
             }
         }

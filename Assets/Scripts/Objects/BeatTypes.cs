@@ -5,6 +5,9 @@ namespace Assets.Scripts.Objects
 {
 	public enum BeatTypes
 	{
-		Standard = 0,
+		Standard,
+		Side,
+		Touch,
+		Crash
 	}
 }
