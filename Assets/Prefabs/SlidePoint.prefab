@@ -148,11 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitPoint
   hitWindow: 0.2
+  negativeHitWindow: 0
   laneNr: 0
   pointMover: {fileID: 846319685961517975}
   pointNr: 0
-  pointType: 0
+  beatType: 1
   blankHitWindow: 0
+  negativeBlankHitWindow: 0
   pointSystem: {fileID: 0}
 --- !u!1001 &1423388941832500230
 PrefabInstance:

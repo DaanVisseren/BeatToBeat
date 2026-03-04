@@ -26,6 +26,7 @@ public class PointSystem : MonoBehaviour
 
     public float currentStreak;
     public float currentMultiplier = 1;
+    public float highestStreak = 0;
 
     public float totalPoints;
 
@@ -36,6 +37,12 @@ public class PointSystem : MonoBehaviour
     public float fadeOutSpeed;
     private float a;
     private Color currentColor;
+
+    //Endscreen 
+    public Canvas endScreenCanvas;
+    public TextMeshProUGUI endScreenPointsTxt;
+    public TextMeshProUGUI endScreenStreakTxt;
+
     void Start()
     {
         maxTimeOff = timingForPoints[timingForPoints.Count - 1];
@@ -63,6 +70,7 @@ public class PointSystem : MonoBehaviour
     public void GainMultiplier()
     {
         currentStreak++;
+        if(currentStreak > highestStreak) { highestStreak = currentStreak;  }
         if (currentStreak % hitAmountForMultIncrease == 0)
         {
             if(currentMultiplier <= maxMultiplier)
@@ -136,6 +144,13 @@ public class PointSystem : MonoBehaviour
         hitScoreTxt.text = missText;
     }
 
+    public void ShowEndScreen()
+    {
+        endScreenCanvas.enabled = !endScreenCanvas.enabled;
+        endScreenPointsTxt.text = "Total Points: " + totalPoints;
+        endScreenStreakTxt.text = "Highest Streak: " + highestStreak;
+    }
+
     void Update()
     {
         if(hitScoreTxt.color.a != 0)
@@ -143,6 +158,11 @@ public class PointSystem : MonoBehaviour
             a -= Time.deltaTime*fadeOutSpeed;
             Color color = new Color(currentColor.r, currentColor.g, currentColor.b, a);
             hitScoreTxt.color = color;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            ShowEndScreen();
         }
     }
 

@@ -1,6 +1,8 @@
+using Assets.Scripts.Objects;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 
 public class SpawnPoints : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class SpawnPoints : MonoBehaviour
     public GameObject pointPrefab;
     public GameObject slashPointPrefab;
     public GameObject blankPointPrefab;
+    public GameObject breakPointPrefab;
     public float timeToReachEnd;
 
     public int pointsSpawned = 0;
@@ -56,6 +59,9 @@ public class SpawnPoints : MonoBehaviour
         if (Input.GetKeyDown(spawnKeycodes[7])) { CreatePoint(1, blankPointPrefab); }
         if (Input.GetKeyDown(spawnKeycodes[8])) { CreatePoint(2, blankPointPrefab); }
 
+        if (Input.GetKeyDown(spawnKeycodes[9])) { CreatePoint(0, breakPointPrefab); }
+        if (Input.GetKeyDown(spawnKeycodes[10])) { CreatePoint(1, breakPointPrefab); }
+        if (Input.GetKeyDown(spawnKeycodes[11])) { CreatePoint(2, breakPointPrefab); }
     }
 
     public void CreatePoint(int i, GameObject prefab)
@@ -64,7 +70,7 @@ public class SpawnPoints : MonoBehaviour
         HitPoint point = obj.GetComponent<HitPoint>();
 
         point.laneNr = i;
-        if (point.pointType == 0) {RotateObject(obj, point); }//TEMP 
+        if (point.beatType == BeatTypes.Side) {RotateObject(obj, point); }//TEMP 
 
        point.pointNr = pointsSpawned;
        obj.GetComponent<MovePoint>().SetupPoint(timeToReachEnd);
