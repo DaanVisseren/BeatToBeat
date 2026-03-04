@@ -14,6 +14,7 @@ public class SpawnPoints : MonoBehaviour
     public GameObject slashPointPrefab;
     public GameObject blankPointPrefab;
     public GameObject breakPointPrefab;
+    public GameObject slidePointPrefab;
     public float timeToReachEnd;
 
     public int pointsSpawned = 0;
@@ -30,20 +31,17 @@ public class SpawnPoints : MonoBehaviour
     void Update()
     {
 
-        // Check Lane 1
-     /*   if (RhythmAudioManager.Instance.ShouldSpawnLane1())
-        {
-            CreatePoint(0, slashPointPrefab);
-            Debug.Log("Should spawn in lane 1");
-        }
+        var beats1 = RhythmAudioManager.Instance.ShouldSpawnLane1();
+        foreach (var beat in beats1)
+            spawn(0, beat.BeatTypes);
 
-        // Check Lane 2
-        if (RhythmAudioManager.Instance.ShouldSpawnLane2())
-        { CreatePoint(1, slashPointPrefab); }
+        var beats2 = RhythmAudioManager.Instance.ShouldSpawnLane2();
+        foreach (var beat in beats2)
+            spawn(1, beat.BeatTypes);
 
-        // Check Lane 3
-        if (RhythmAudioManager.Instance.ShouldSpawnLane3())
-        { CreatePoint(2, slashPointPrefab); }*/
+        var beats3 = RhythmAudioManager.Instance.ShouldSpawnLane3();
+        foreach (var beat in beats3)
+            spawn(2, beat.BeatTypes);
 
 
         //Temp
@@ -91,5 +89,37 @@ public class SpawnPoints : MonoBehaviour
         {
             obj.transform.localRotation *= Quaternion.Euler(0, 180, -23);
         }
+    }
+
+    public void spawn(int lane, BeatTypes type)
+    {
+        if (type == (BeatTypes)0)
+        {
+            Debug.Log("Create point");
+            CreatePoint(lane, slashPointPrefab);
+        }
+        else
+            Debug.LogWarning($"Attempted to spawn on invalid lane {lane}");
+        if (type == (BeatTypes)1)
+        {
+            Debug.Log("Create point");
+            CreatePoint(lane, slidePointPrefab);
+        }
+        else
+            Debug.LogWarning($"Attempted to spawn on invalid lane {lane}");
+        if (type == (BeatTypes)2)
+        {
+            Debug.Log("Create point");
+            CreatePoint(lane, blankPointPrefab);
+        }
+        else
+            Debug.LogWarning($"Attempted to spawn on invalid lane {lane}");
+        if (type == (BeatTypes)3)
+        {
+            Debug.Log("Create point");
+            CreatePoint(lane, breakPointPrefab);
+        }
+        else
+            Debug.LogWarning($"Attempted to spawn on invalid lane {lane}");
     }
 }

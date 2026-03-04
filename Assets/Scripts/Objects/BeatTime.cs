@@ -3,9 +3,14 @@ using System.Collections;
 
 namespace Assets.Scripts.Objects
 {
-	public class BeatTime: MonoBehaviour
-	{
-		public BeatTypes type;
-		public float time;
-	}
+    using UnityEngine;
+
+    [System.Serializable]
+    public class BeatTime
+    {
+        public BeatTypes BeatTypes;
+        public float time; // in beats
+        [HideInInspector]
+        public bool ready = false; // internal use for spawn
+    }
 }

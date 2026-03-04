@@ -16,3 +16,6 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 165394d85b17b2643b87865de7563482, type: 3}
   bpm: 120
   firstBeatOffset: 10
+  lane1Beats: []
+  lane2Beats: []
+  lane3Beats: []

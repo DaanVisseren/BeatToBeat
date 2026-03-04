@@ -9,7 +9,7 @@ public class SongData : ScriptableObject
     public AudioClip audioClip;
     public float bpm;
     public float firstBeatOffset;
-    public List<float> lane1Beats = new();
-    public List<float> lane2Beats = new();
-    public List<float> lane3Beats = new();
+    public List<BeatTime> lane1Beats = new();
+    public List<BeatTime> lane2Beats = new();
+    public List<BeatTime> lane3Beats = new();
 }
