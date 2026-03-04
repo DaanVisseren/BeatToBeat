@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    DallLeaderbord dal = new();
+    DallLeaderbord dal;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
