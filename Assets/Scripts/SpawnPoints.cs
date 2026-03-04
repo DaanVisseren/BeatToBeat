@@ -28,7 +28,7 @@ public class SpawnPoints : MonoBehaviour
     {
 
         // Check Lane 1
-        if (RhythmAudioManager.Instance.ShouldSpawnLane1())
+     /*   if (RhythmAudioManager.Instance.ShouldSpawnLane1())
         {
             CreatePoint(0, slashPointPrefab);
             Debug.Log("Should spawn in lane 1");
@@ -40,7 +40,7 @@ public class SpawnPoints : MonoBehaviour
 
         // Check Lane 3
         if (RhythmAudioManager.Instance.ShouldSpawnLane3())
-        { CreatePoint(2, slashPointPrefab); }
+        { CreatePoint(2, slashPointPrefab); }*/
 
 
         //Temp
@@ -58,7 +58,7 @@ public class SpawnPoints : MonoBehaviour
 
     }
 
-    private void CreatePoint(int i, GameObject prefab)
+    public void CreatePoint(int i, GameObject prefab)
     {
         GameObject obj = Instantiate(prefab, spawnPoints[i].position, Quaternion.identity);
         HitPoint point = obj.GetComponent<HitPoint>();

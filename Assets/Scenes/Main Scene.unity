@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Objects.NewMonoBehaviour
   song: {fileID: 11400000, guid: 3411af1ac561f0a46819781739d21885, type: 2}
+  pointSpawner: {fileID: 489538751}
 --- !u!4 &89539562
 Transform:
   m_ObjectHideFlags: 0
