@@ -40,17 +40,20 @@ public class HitPoint : MonoBehaviour
 
     public void TryToHitPoint(int lane, int typeTryingToHit)
     {
-        if ((pointMover.timeToPlayer >= negativeHitWindow && pointMover.timeToPlayer <= hitWindow) || pointType == 2)
+        if (player.notDisable())
         {
-            if (lane == laneNr)
+            if ((pointMover.timeToPlayer >= negativeHitWindow && pointMover.timeToPlayer <= hitWindow) || pointType == 2)
             {
-                if (pointType == typeTryingToHit)
+                if (lane == laneNr)
                 {
-                    Debug.Log(pointMover.timeToPlayer);
-                    player.currentPointNr++;
-                    if (pointType == 2) { pointSystem.GainPoints(); }
-                    else { pointSystem.GainPoints(pointMover.timeToPlayer); }
-                    Destroy(gameObject);
+                    if (pointType == typeTryingToHit)
+                    {
+                        Debug.Log(pointMover.timeToPlayer);
+                        player.currentPointNr++;
+                        if (pointType == 2) { pointSystem.GainPoints(); }
+                        else { pointSystem.GainPoints(pointMover.timeToPlayer); }
+                        Destroy(gameObject);
+                    }
                 }
             }
         }

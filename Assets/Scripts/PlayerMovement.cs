@@ -1,9 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
     public Transform leftPos;
     public Transform midPos;
     public Transform rightPos;
@@ -11,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode moveRight;
     public KeyCode moveLeft;
     public KeyCode slash;
+    public KeyCode crash;
     public int currentLaneNr = 1;
     private int lastLaneNr = 1;
 
@@ -24,62 +24,74 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 endPoint;
     private Vector3 startPoint;
 
+    public bool disabled => Time.unscaledTime < disabledUntilTime;
+    private float disabledUntilTime;
+    [SerializeField] private float spinDuration = 0.5f;
+    private bool isSpinning = false;
 
+    private void Start()
+    {
+    }
     void Update()
     {
+        if(notDisable())
+        {
+            if (Input.GetKeyDown(crash))
+            {
+                HitObstical();
+            }
+            if (!snapBack)
+            {
+                if (Input.GetKeyDown(moveRight))
+                {
+                    changeLaneNr(true);
+                }
+
+                if (Input.GetKeyDown(moveLeft))
+                {
+                    changeLaneNr(false);
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(moveRight))
+                {
+                    changeLaneNr(true);
+                }
+                else if (Input.GetKeyUp(moveRight))
+                {
+                    changeLaneNr(false);
+                }
+
+                if (Input.GetKeyDown(moveLeft))
+                {
+                    changeLaneNr(false);
+                }
+                else if (Input.GetKeyUp(moveLeft))
+                {
+                    changeLaneNr(true);
+                }
+            }
+
+            if (Input.GetKeyDown(slash))
+            {
+                if (FindPoint() != null)
+                {
+                    FindPoint().TryToHitPoint(currentLaneNr, 1);
+                }
+            }
+
+            if (currentLaneNr != lastLaneNr)
+            {
+                SetMovement(currentLaneNr);
+            }
+
+            if (isMoving)
+            {
+                MovePlayer();
+            }
+        }
         lastLaneNr = currentLaneNr;
-
-
-        if (!snapBack)
-        {
-            if (Input.GetKeyDown(moveRight))
-            {
-                changeLaneNr(true);
-            }
-
-            if (Input.GetKeyDown(moveLeft))
-            {
-                changeLaneNr(false);
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(moveRight))
-            {
-                changeLaneNr(true);
-            }
-            else if(Input.GetKeyUp(moveRight))
-            {
-                changeLaneNr(false);
-            }
-
-            if (Input.GetKeyDown(moveLeft))
-            {
-                changeLaneNr(false);
-            }
-            else if (Input.GetKeyUp(moveLeft))
-            {
-                changeLaneNr(true);
-            }
-        }
-
-        if (Input.GetKeyDown(slash))
-        {
-            if (FindPoint() != null)
-            {
-                FindPoint().TryToHitPoint(currentLaneNr, 1);
-            }
-        }
-
-        if(currentLaneNr != lastLaneNr)
-        {
-            SetMovement(currentLaneNr);
-        }
-
-        if (isMoving)
-        {
-            MovePlayer();
-        }
 
     }
 
@@ -156,4 +168,43 @@ public class PlayerMovement : MonoBehaviour
 
         isMoving = true;
     }
+    public bool notDisable()
+    {
+        return !disabled;
+    }
+    public void HitObstical()
+    {
+        DisableForMilliseconds(500);
+        Spin360();
+    }
+    public void DisableForMilliseconds(int milliseconds)
+    {
+        disabledUntilTime = Time.unscaledTime + (milliseconds / 1000f);
+    }
+
+    private IEnumerator Spin360()
+    {
+        isSpinning = true;
+
+        float elapsed = 0f;
+        float startRotation = transform.eulerAngles.z;
+        float targetRotation = startRotation + 360f;
+
+        while (elapsed < spinDuration)
+        {
+            elapsed += Time.deltaTime;
+            float progress = elapsed / spinDuration;
+
+            float currentRotation = Mathf.Lerp(startRotation, targetRotation, progress);
+            transform.rotation = Quaternion.Euler(0f, 0f, currentRotation);
+
+            yield return null;
+        }
+
+        // Snap exactly to final rotation
+        transform.rotation = Quaternion.Euler(0f, 0f, targetRotation);
+
+        isSpinning = false;
+    }
+
 }
