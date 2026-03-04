@@ -13,7 +13,7 @@ public static class AdvancedBeatGenerator
         out List<BeatTime> lane2,
         out List<BeatTime> lane3,
         int beatSubdivision = 4,
-        float sensitivity = 0.5f)
+        float sensitivity = 1.5f)
     {
         lane1 = new List<BeatTime>();
         lane2 = new List<BeatTime>();
@@ -73,7 +73,7 @@ public static class AdvancedBeatGenerator
                 Mathf.Round(beatPos / subdivisionLength) * subdivisionLength;
 
             if (low > avgLow * sensitivity)
-                AddIfNotDuplicate(lane1, snappedBeat, 20);
+                AddIfNotDuplicate(lane1, snappedBeat, 25);
 
             if (mid > avgMid * sensitivity)
                 AddIfNotDuplicate(lane2, snappedBeat, 15);
@@ -109,19 +109,19 @@ public static class AdvancedBeatGenerator
             switch (random)
             {
                 case <= 1:
-                    list.Add(new BeatTime { time = time, type = type });
+                    list.Add(new BeatTime { time = time, BeatTypes = (BeatTypes)3 });
                     break;
                 case <= 5:
-                    list.Add(new BeatTime { time = time, type = type });
+                    list.Add(new BeatTime { time = time, BeatTypes = (BeatTypes)2 });
                     break;
                 case <= 10:
-                    list.Add(new BeatTime { time = time, type = type });
+                    list.Add(new BeatTime { time = time, BeatTypes = (BeatTypes)1 });
                     break;
                 case <= 20:
-                    list.Add(new BeatTime { time = time, type = type });
+                    list.Add(new BeatTime { time = time, BeatTypes = (BeatTypes)0 });
                     break;
                 default:
-                    list.Add(new BeatTime { time = time, type = type });
+                    list.Add(new BeatTime { time = time, BeatTypes = (BeatTypes)3 });
                     break;
             }
             
