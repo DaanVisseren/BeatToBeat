@@ -21,6 +21,9 @@ public class SpawnPoints : MonoBehaviour
 
     private int lastLanePlaced = 10;
 
+
+    public bool autoSpawn = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,18 +33,21 @@ public class SpawnPoints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (autoSpawn)
+        {
+            var beats1 = RhythmAudioManager.Instance.ShouldSpawnLane1();
+            foreach (var beat in beats1)
+                spawn(0, beat.BeatTypes);
 
-        var beats1 = RhythmAudioManager.Instance.ShouldSpawnLane1();
-        foreach (var beat in beats1)
-            spawn(0, beat.BeatTypes);
+            var beats2 = RhythmAudioManager.Instance.ShouldSpawnLane2();
+            foreach (var beat in beats2)
+                spawn(1, beat.BeatTypes);
 
-        var beats2 = RhythmAudioManager.Instance.ShouldSpawnLane2();
-        foreach (var beat in beats2)
-            spawn(1, beat.BeatTypes);
+            var beats3 = RhythmAudioManager.Instance.ShouldSpawnLane3();
+            foreach (var beat in beats3)
+                spawn(2, beat.BeatTypes);
+        }
 
-        var beats3 = RhythmAudioManager.Instance.ShouldSpawnLane3();
-        foreach (var beat in beats3)
-            spawn(2, beat.BeatTypes);
 
 
         //Temp

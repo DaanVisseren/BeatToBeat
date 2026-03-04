@@ -22,27 +22,7 @@ namespace Assets.Scripts.Objects
         // Update is called once per frame
         void Update()
         {
-            // Check Lane 1
-            if (RhythmAudioManager.Instance.ShouldSpawnLane1())
-            {
-                pointSpawner.CreatePoint(0, pointSpawner.slashPointPrefab);
-                Debug.Log("Lane 1");
-            }
 
-
-            // Check Lane 2
-            if (RhythmAudioManager.Instance.ShouldSpawnLane2())
-            {
-                pointSpawner.CreatePoint(1, pointSpawner.slashPointPrefab);
-                Debug.Log("Lane 2");
-            }
-
-            // Check Lane 3
-            if (RhythmAudioManager.Instance.ShouldSpawnLane3())
-            {
-                pointSpawner.CreatePoint(2, pointSpawner.slashPointPrefab);
-                Debug.Log("Lane 3");
-            }
         }
     }
 }
