@@ -3071,6 +3071,10 @@ PrefabInstance:
       value: -0.2513
       objectReference: {fileID: 0}
     - target: {fileID: 3346060214200749492, guid: 43e3a8319a9942d4cb81320726475fcb, type: 3}
+      propertyPath: crash
+      value: 109
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346060214200749492, guid: 43e3a8319a9942d4cb81320726475fcb, type: 3}
       propertyPath: midPos
       value: 
       objectReference: {fileID: 1042594448}
