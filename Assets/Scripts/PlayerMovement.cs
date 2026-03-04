@@ -184,13 +184,14 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Spin360()
     {
+        
         isSpinning = true;
 
         float elapsed = 0f;
         float startRotation = transform.eulerAngles.z;
         float targetRotation = startRotation + 360f;
 
-        while (elapsed < spinDuration)
+        while (elapsed < spinDuration && false)
         {
             elapsed += Time.deltaTime;
             float progress = elapsed / spinDuration;
@@ -202,9 +203,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Snap exactly to final rotation
-        transform.rotation = Quaternion.Euler(0f, 0f, targetRotation);
+        //transform.rotation = Quaternion.Euler(0f, 0f, targetRotation);
 
         isSpinning = false;
+        
     }
 
 }

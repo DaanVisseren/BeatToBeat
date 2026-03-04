@@ -1,20 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Objects;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public static class AdvancedBeatGenerator
 {
     public static void GenerateBeatmap(
         AudioClip clip,
         float bpm,
-        out List<float> lane1,
-        out List<float> lane2,
-        out List<float> lane3,
+        out List<BeatTime> lane1,
+        out List<BeatTime> lane2,
+        out List<BeatTime> lane3,
         int beatSubdivision = 4,
-        float sensitivity = 1.5f)
+        float sensitivity = 0.5f)
     {
-        lane1 = new List<float>();
-        lane2 = new List<float>();
-        lane3 = new List<float>();
+        lane1 = new List<BeatTime>();
+        lane2 = new List<BeatTime>();
+        lane3 = new List<BeatTime>();
 
         if (clip == null)
         {
@@ -49,7 +52,6 @@ public static class AdvancedBeatGenerator
             for (int j = 0; j < windowSize; j++)
             {
                 float sample = samples[i + j];
-
                 float abs = Mathf.Abs(sample);
 
                 if (j < windowSize * 0.2f)
@@ -71,13 +73,13 @@ public static class AdvancedBeatGenerator
                 Mathf.Round(beatPos / subdivisionLength) * subdivisionLength;
 
             if (low > avgLow * sensitivity)
-                AddIfNotDuplicate(lane1, snappedBeat);
+                AddIfNotDuplicate(lane1, snappedBeat, 20);
 
             if (mid > avgMid * sensitivity)
-                AddIfNotDuplicate(lane2, snappedBeat);
+                AddIfNotDuplicate(lane2, snappedBeat, 15);
 
             if (high > avgHigh * sensitivity)
-                AddIfNotDuplicate(lane3, snappedBeat);
+                AddIfNotDuplicate(lane3, snappedBeat, 10);
 
             historyLow[historyIndex] = low;
             historyMid[historyIndex] = mid;
@@ -98,11 +100,32 @@ public static class AdvancedBeatGenerator
         return sum / arr.Length;
     }
 
-    private static void AddIfNotDuplicate(List<float> list, float value)
+    private static void AddIfNotDuplicate(List<BeatTime> list, float time, int number)
     {
-        if (list.Count == 0 || Mathf.Abs(list[list.Count - 1] - value) > 0.05f)
+
+        if (list.Count == 0 || Mathf.Abs(list[list.Count - 1].time - time) > 0.05f)
         {
-            list.Add(value);
+            int random = UnityEngine.Random.Range(0,number);
+            switch (random)
+            {
+                case <= 1:
+                    list.Add(new BeatTime { time = time, type = type });
+                    break;
+                case <= 5:
+                    list.Add(new BeatTime { time = time, type = type });
+                    break;
+                case <= 10:
+                    list.Add(new BeatTime { time = time, type = type });
+                    break;
+                case <= 20:
+                    list.Add(new BeatTime { time = time, type = type });
+                    break;
+                default:
+                    list.Add(new BeatTime { time = time, type = type });
+                    break;
+            }
+            
+            
         }
     }
 }
