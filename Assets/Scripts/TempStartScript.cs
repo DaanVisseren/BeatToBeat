@@ -22,6 +22,7 @@ namespace Assets.Scripts.Objects
         // Update is called once per frame
         void Update()
         {
+            return;
             // Check Lane 1
             if (RhythmAudioManager.Instance.ShouldSpawnLane1())
             {
