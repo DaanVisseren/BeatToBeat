@@ -12,5 +12,20 @@ namespace Assets.Scripts.Objects
         public float time; // in beats
         [HideInInspector]
         public bool ready = false; // internal use for spawn
+        public BeatTime(BeatTypes type, float time)
+        {
+            BeatTypes = type;
+            this.time = time;
+        }
+        public BeatTime( float time, BeatTypes type)
+        {
+            BeatTypes = type;
+            this.time = time;
+        }
+        public BeatTime()
+        {
+
+        }
     }
+
 }
