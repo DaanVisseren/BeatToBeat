@@ -152,6 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Objects.NewMonoBehaviour
   song: {fileID: 11400000, guid: 3411af1ac561f0a46819781739d21885, type: 2}
   pointSpawner: {fileID: 489538751}
+  lane1Beats: []
+  lane2Beats: []
+  lane3Beats: []
 --- !u!4 &89539562
 Transform:
   m_ObjectHideFlags: 0
@@ -682,6 +685,7 @@ MonoBehaviour:
   slidePointPrefab: {fileID: 3901259259678547472, guid: ba9c8e9060aa06c4d94d474dc2be3a24, type: 3}
   timeToReachEnd: 2.5
   pointsSpawned: 0
+  autoSpawn: 1
 --- !u!4 &489538752
 Transform:
   m_ObjectHideFlags: 0

@@ -55,6 +55,22 @@ namespace Assets.Scripts.Objects
             lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 7f));
             lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 8f));
 
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 10.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 10.5f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 11.0f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 12.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 12.5f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 13.0f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 14.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 14.5f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 15.0f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Standard, o + 16.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 17.0f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 18.0f));
+
             // ========== MID BUILD (20-40s) ==========
 
             lane1Beats.Add(new BeatTime(BeatTypes.Crash, o + 20f));
@@ -70,11 +86,30 @@ namespace Assets.Scripts.Objects
             lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 25f));
 
             lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 26f));
-            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 26f)); // double hit
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 26f));
 
             lane3Beats.Add(new BeatTime(BeatTypes.Side, o + 28f));
             lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 28.5f));
             lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 29f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Crash, o + 30.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 30.5f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 31.0f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 32.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Standard, o + 32.5f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 33.0f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 34.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Crash, o + 34.5f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 35.0f));
+
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 36.0f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 36.0f));
+
+            lane3Beats.Add(new BeatTime(BeatTypes.Side, o + 38.0f));
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 38.5f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 39.0f));
 
             // ========== FINAL BUILD (40-60s HARD) ==========
 
@@ -86,13 +121,13 @@ namespace Assets.Scripts.Objects
             lane2Beats.Add(new BeatTime(BeatTypes.Side, o + 41.25f));
             lane3Beats.Add(new BeatTime(BeatTypes.Side, o + 41.5f));
 
-            lane1Beats.Add(new BeatTime(BeatTypes.Crash, o + 42f));
+            lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 42f));
             lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 42f));
 
-            lane2Beats.Add(new BeatTime(BeatTypes.Crash, o + 43f));
+            lane2Beats.Add(new BeatTime(BeatTypes.Touch, o + 43f));
             lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 43f));
 
-            lane3Beats.Add(new BeatTime(BeatTypes.Crash, o + 44f));
+            lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + 44f));
             lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + 44f));
 
             // Rapid ending spam (very hard)
@@ -100,7 +135,7 @@ namespace Assets.Scripts.Objects
             for (float t = 45f; t <= 60f; t += 1f)
             {
                 lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + t));
-                lane2Beats.Add(new BeatTime(BeatTypes.Side, o + t + 0.1f));
+                lane2Beats.Add(new BeatTime(BeatTypes.Standard, o + t + 0.1f));
                 lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + t + 0.2f));
             }
         }
