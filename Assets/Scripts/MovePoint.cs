@@ -6,7 +6,7 @@ public class MovePoint : MonoBehaviour
 {
     public Vector3 startPosition;
     public Vector3 endPoint;
-    public float distanceToEnd = 30f;
+    public float distanceToEnd = 40f;
     public float timeToReachTarget = 7f;
     public float hitWindow = 0.150f;
     public float t;
@@ -15,14 +15,14 @@ public class MovePoint : MonoBehaviour
     public float timeAlive = 0;
 
     private bool ready = false;
-    public void SetupPoint(float timeToTarget)
+    public void SetupPoint(float timeToTarget, float distanceToEnd_, float startPos)
     {
         t = 0;
         startPosition = transform.position;
-        startPosition.x = -20;
+        startPosition.x = startPos;
 
         endPoint = transform.position;
-        endPoint.x = distanceToEnd;
+        endPoint.x = distanceToEnd_;
 
         timeToReachTarget = timeToTarget;
         timeToPlayer = timeToReachTarget / 2;

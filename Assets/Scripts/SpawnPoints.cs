@@ -16,7 +16,8 @@ public class SpawnPoints : MonoBehaviour
     public GameObject breakPointPrefab;
     public GameObject slidePointPrefab;
     public float timeToReachEnd;
-
+    public float disToEnd;
+    public float startPos;
     public int pointsSpawned = 0;
 
     private int lastLanePlaced = 10;
@@ -77,7 +78,7 @@ public class SpawnPoints : MonoBehaviour
         if (point.beatType == BeatTypes.Side) {RotateObject(obj, point); }//TEMP 
 
        point.pointNr = pointsSpawned;
-       obj.GetComponent<MovePoint>().SetupPoint(timeToReachEnd);
+       obj.GetComponent<MovePoint>().SetupPoint(timeToReachEnd, disToEnd, startPos);
        pointsSpawned++;
        lastLanePlaced = i;
     }
