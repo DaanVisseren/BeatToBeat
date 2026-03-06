@@ -132,11 +132,11 @@ namespace Assets.Scripts.Objects
 
             // Rapid ending spam (very hard)
 
-            for (float t = 45f; t <= 60f; t += 1f)
+            for (float t = 45f; t <= 60f; t += 1.5f)
             {
                 lane1Beats.Add(new BeatTime(BeatTypes.Touch, o + t));
-                lane2Beats.Add(new BeatTime(BeatTypes.Standard, o + t + 0.1f));
-                lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + t + 0.2f));
+                lane2Beats.Add(new BeatTime(BeatTypes.Standard, o + t + 0.3f));
+                lane3Beats.Add(new BeatTime(BeatTypes.Touch, o + t + 0.6f));
             }
         }
     }
