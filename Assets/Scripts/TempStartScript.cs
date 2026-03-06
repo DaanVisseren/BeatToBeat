@@ -8,13 +8,14 @@ namespace Assets.Scripts.Objects
     public class NewMonoBehaviour : MonoBehaviour
     {
         public SongDatabase song;
-
+        public PointSystem pointSystem;
         //Temp
         public SpawnPoints pointSpawner;
 
         public List<BeatTime> lane1Beats = new();
         public List<BeatTime> lane2Beats = new();
         public List<BeatTime> lane3Beats = new();
+        private bool _actionPerformed = false;
 
         // Use this for initialization
         void Start()
@@ -25,12 +26,18 @@ namespace Assets.Scripts.Objects
             songToPlay.lane2Beats = lane2Beats;
             songToPlay.lane3Beats = lane3Beats;
             RhythmAudioManager.Instance.LoadSong(songToPlay);
-                RhythmAudioManager.Instance.StartSong();         
+            RhythmAudioManager.Instance.StartSong();
+
+
         }
         // Update is called once per frame
         void Update()
         {
-
+            if (RhythmAudioManager.Instance.SongPositionInBeats > 68 && !_actionPerformed)
+            {
+                pointSystem.ShowEndScreen();
+                _actionPerformed = true;
+            }
         }
         public void tempfill()
         {
