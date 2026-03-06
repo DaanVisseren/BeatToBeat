@@ -23,7 +23,7 @@ public class SpawnPoints : MonoBehaviour
     private int lastLanePlaced = 10;
 
 
-    public bool autoSpawn = false;
+    public bool autoSpawn = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

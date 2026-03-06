@@ -16,6 +16,179 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 165394d85b17b2643b87865de7563482, type: 3}
   bpm: 120
   firstBeatOffset: 10
-  lane1Beats: []
-  lane2Beats: []
-  lane3Beats: []
+  lane1Beats:     - !u!114 &11410001
+                    BeatTypes: 0
+                    time: 2.5
+                    ready: 0
+                  - !u!114 &11410002
+                    BeatTypes: 0
+                    time: 6.5
+                    ready: 0
+                  - !u!114 &11410003
+                    BeatTypes: 0
+                    time: 10.5
+                    ready: 0
+                  - !u!114 &11410004
+                    BeatTypes: 0
+                    time: 14.5
+                    ready: 0
+                  - !u!114 &11410005
+                    BeatTypes: 0
+                    time: 18.5
+                    ready: 0
+                  - !u!114 &11410006
+                    BeatTypes: 0
+                    time: 22.5
+                    ready: 0
+                  - !u!114 &11410007
+                    BeatTypes: 0
+                    time: 26.5
+                    ready: 0
+                  - !u!114 &11410008
+                    BeatTypes: 0
+                    time: 30.5
+                    ready: 0
+                  - !u!114 &11410009
+                    BeatTypes: 0
+                    time: 34.5
+                    ready: 0
+                  - !u!114 &11410010
+                    BeatTypes: 0
+                    time: 38.5
+                    ready: 0
+                  - !u!114 &11410011
+                    BeatTypes: 0
+                    time: 42.5
+                    ready: 0
+                  - !u!114 &11410012
+                    BeatTypes: 0
+                    time: 46.5
+                    ready: 0
+                  - !u!114 &11410013
+                    BeatTypes: 0
+                    time: 50.5
+                    ready: 0
+                  - !u!114 &11410014
+                    BeatTypes: 0
+                    time: 54.5
+                    ready: 0
+                  - !u!114 &11410015
+                    BeatTypes: 0
+                    time: 58.5
+                    ready: 0
+                lane2Beats:
+                  # Lane 2: beats offset by 2 sec
+                  - !u!114 &11420001
+                    BeatTypes: 0
+                    time: 4.5
+                    ready: 0
+                  - !u!114 &11420002
+                    BeatTypes: 0
+                    time: 8.5
+                    ready: 0
+                  - !u!114 &11420003
+                    BeatTypes: 0
+                    time: 12.5
+                    ready: 0
+                  - !u!114 &11420004
+                    BeatTypes: 0
+                    time: 16.5
+                    ready: 0
+                  - !u!114 &11420005
+                    BeatTypes: 0
+                    time: 20.5
+                    ready: 0
+                  - !u!114 &11420006
+                    BeatTypes: 0
+                    time: 24.5
+                    ready: 0
+                  - !u!114 &11420007
+                    BeatTypes: 0
+                    time: 28.5
+                    ready: 0
+                  - !u!114 &11420008
+                    BeatTypes: 0
+                    time: 32.5
+                    ready: 0
+                  - !u!114 &11420009
+                    BeatTypes: 0
+                    time: 36.5
+                    ready: 0
+                  - !u!114 &11420010
+                    BeatTypes: 0
+                    time: 40.5
+                    ready: 0
+                  - !u!114 &11420011
+                    BeatTypes: 0
+                    time: 44.5
+                    ready: 0
+                  - !u!114 &11420012
+                    BeatTypes: 0
+                    time: 48.5
+                    ready: 0
+                  - !u!114 &11420013
+                    BeatTypes: 0
+                    time: 52.5
+                    ready: 0
+                  - !u!114 &11420014
+                    BeatTypes: 0
+                    time: 56.5
+                    ready: 0
+                lane3Beats:
+                  # Lane 3: beats offset by 4 sec
+                  - !u!114 &11430001
+                    BeatTypes: 0
+                    time: 6.5
+                    ready: 0
+                  - !u!114 &11430002
+                    BeatTypes: 0
+                    time: 10.5
+                    ready: 0
+                  - !u!114 &11430003
+                    BeatTypes: 0
+                    time: 14.5
+                    ready: 0
+                  - !u!114 &11430004
+                    BeatTypes: 0
+                    time: 18.5
+                    ready: 0
+                  - !u!114 &11430005
+                    BeatTypes: 0
+                    time: 22.5
+                    ready: 0
+                  - !u!114 &11430006
+                    BeatTypes: 0
+                    time: 26.5
+                    ready: 0
+                  - !u!114 &11430007
+                    BeatTypes: 0
+                    time: 30.5
+                    ready: 0
+                  - !u!114 &11430008
+                    BeatTypes: 0
+                    time: 34.5
+                    ready: 0
+                  - !u!114 &11430009
+                    BeatTypes: 0
+                    time: 38.5
+                    ready: 0
+                  - !u!114 &11430010
+                    BeatTypes: 0
+                    time: 42.5
+                    ready: 0
+                  - !u!114 &11430011
+                    BeatTypes: 0
+                    time: 46.5
+                    ready: 0
+                  - !u!114 &11430012
+                    BeatTypes: 0
+                    time: 50.5
+                    ready: 0
+                  - !u!114 &11430013
+                    BeatTypes: 0
+                    time: 54.5
+                    ready: 0
+                  - !u!114 &11430014
+                    BeatTypes: 0
+                    time: 58.5
+                    ready: 0
